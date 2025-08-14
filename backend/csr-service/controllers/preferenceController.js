@@ -1,3 +1,60 @@
+// Create a new preference
+exports.createPreference = async (req, res) => {
+  try {
+    const preference = new Preference(req.body);
+    await preference.save();
+    res.status(201).json(preference);
+  } catch (error) {
+    logger.error('Error creating preference:', error);
+    res.status(500).json({ error: 'Failed to create preference' });
+  }
+};
+// Get preferences by partyId
+exports.getPreferenceByPartyId = async (req, res) => {
+  try {
+    const preferences = await Preference.find({ partyId: req.params.partyId });
+    res.json(preferences);
+  } catch (error) {
+    logger.error('Error fetching preferences by party:', error);
+    res.status(500).json({ error: 'Failed to fetch preferences by party' });
+  }
+};
+
+// Get a preference by ID
+exports.getPreferenceById = async (req, res) => {
+  try {
+    const preference = await Preference.findById(req.params.id);
+    if (!preference) return res.status(404).json({ error: 'Preference not found' });
+    res.json(preference);
+  } catch (error) {
+    logger.error('Error fetching preference by ID:', error);
+    res.status(500).json({ error: 'Failed to fetch preference by ID' });
+  }
+};
+
+// Update a preference by ID
+exports.updatePreference = async (req, res) => {
+  try {
+    const updated = await Preference.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!updated) return res.status(404).json({ error: 'Preference not found' });
+    res.json(updated);
+  } catch (error) {
+    logger.error('Error updating preference:', error);
+    res.status(500).json({ error: 'Failed to update preference' });
+  }
+};
+
+// Delete a preference by ID
+exports.deletePreference = async (req, res) => {
+  try {
+    const deleted = await Preference.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: 'Preference not found' });
+    res.status(204).send();
+  } catch (error) {
+    logger.error('Error deleting preference:', error);
+    res.status(500).json({ error: 'Failed to delete preference' });
+  }
+};
 const Preference = require('../models/Preference');
 const Party = require('../models/Party');
 const AuditLog = require('../models/AuditLog');

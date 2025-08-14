@@ -81,4 +81,7 @@ auditLogSchema.statics.logEvent = async function(eventData) {
   }
 };
 
-module.exports = mongoose.model('AuditLog', auditLogSchema);
+const AuditLog = mongoose.models.AuditLog || mongoose.model('AuditLogs', auditLogSchema);
+
+
+module.exports = AuditLog;

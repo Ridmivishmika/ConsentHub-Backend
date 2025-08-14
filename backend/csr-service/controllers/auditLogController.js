@@ -1,3 +1,38 @@
+// List audit logs
+exports.listAuditLogs = async (req, res) => {
+  // TODO: Implement logic to fetch audit logs with filters, pagination, sorting
+  res.json([]);
+};
+
+// List audit logs by partyId
+exports.listAuditLogsByParty = async (req, res) => {
+  // TODO: Implement logic to fetch audit logs by partyId
+  res.json([]);
+};
+
+// Get event types
+exports.getEventTypes = async (req, res) => {
+  // TODO: Implement logic to fetch distinct event types
+  res.json([]);
+};
+
+// Get audit statistics
+exports.getAuditStatistics = async (req, res) => {
+  // TODO: Implement logic to fetch audit statistics
+  res.json({});
+};
+
+// Search audit logs
+exports.searchAuditLogs = async (req, res) => {
+  // TODO: Implement logic to search audit logs
+  res.json([]);
+};
+
+// Export audit logs
+exports.exportAuditLogs = async (req, res) => {
+  // TODO: Implement logic to export audit logs
+  res.json([]);
+};
 const AuditLog = require('../models/AuditLog');
 const { logger } = require('../../shared/utils');
 

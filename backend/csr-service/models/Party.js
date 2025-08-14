@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const partyDb = require('../db/partyDb'); 
+const partyDb = require('../db/partyDb');
 
 const partySchema = new mongoose.Schema({
   id: {

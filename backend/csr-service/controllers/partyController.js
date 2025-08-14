@@ -40,9 +40,7 @@ const createPartyForCustomer = async ({ email, displayName, phoneNumber, created
   }
 };
 
-module.exports = {
-  createPartyForCustomer
-};
+// Remove duplicate module.exports, use only exports for controller functions
 exports.getAllParties = async (req, res) => {
   try {
     const { type, status, search, limit = 50, offset = 0 } = req.query;
